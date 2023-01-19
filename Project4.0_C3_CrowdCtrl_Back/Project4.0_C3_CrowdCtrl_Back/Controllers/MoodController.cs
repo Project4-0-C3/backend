@@ -22,13 +22,13 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet]
         public async Task<IEnumerable<Mood>> GetMoods()
         {
-            return await _context.Moods.ToListAsync();
+            return await _context.Moods.Include(m => m.MoodType).Include(m => m.EventRecordingDevice).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMoodById(int id)
         {
-            var mood = await _context.Moods.FindAsync(id);
+            var mood = await _context.Moods.Include(m => m.MoodType).Include(m => m.EventRecordingDevice).FirstOrDefaultAsync(m => m.MoodId == id);
             return mood == null ? NotFound() : Ok(mood);
         }
 

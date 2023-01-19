@@ -2,9 +2,12 @@ using Microsoft.EntityFrameworkCore;
 using Project4._0_C3_CrowdCtrl_Back.Models;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using Project4._0_C3_CrowdCtrl_Back.Data;
+using System.Text.Json.Serialization;
+using Microsoft.AspNetCore.Http.Json;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddMvc().AddJsonOptions(options => options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // Add services to the container.
 
 builder.Services.AddControllers();

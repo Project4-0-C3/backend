@@ -22,13 +22,13 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet]
         public async Task<IEnumerable<Zone>> GetZones()
         {
-            return await _context.Zones.ToListAsync();
+            return await _context.Zones.Include(z => z.EventRecordingDevices).Include(z => z.Groups).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetZoneById(int id)
         {
-            var zone = await _context.Zones.FindAsync(id);
+            var zone = await _context.Zones.Include(z => z.EventRecordingDevices).Include(z => z.Groups).FirstOrDefaultAsync(z => z.ZoneId == id);
             return zone == null ? NotFound() : Ok(zone);
         }
 

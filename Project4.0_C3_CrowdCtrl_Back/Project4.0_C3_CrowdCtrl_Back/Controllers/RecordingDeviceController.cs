@@ -22,13 +22,13 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet]
         public async Task<IEnumerable<RecordingDevice>> GetRecordingDevices()
         {
-            return await _context.RecordingDevices.ToListAsync();
+            return await _context.RecordingDevices.Include(r => r.EventRecordingDevices).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetRecordingDeviceById(int id)
         {
-            var recordingDevice = await _context.RecordingDevices.FindAsync(id);
+            var recordingDevice = await _context.RecordingDevices.Include(r => r.EventRecordingDevices).FirstOrDefaultAsync(r => r.RecordingDeviceId == id);
             return recordingDevice == null ? NotFound() : Ok(recordingDevice);
         }
 

@@ -11,9 +11,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Models
         public int MoodTypeId { get; set; }
         public int EventRecordingDeviceId { get; set; }
 
-        [JsonIgnore]
         public MoodType MoodType { get; set; }
-        [JsonIgnore]
         public EventRecordingDevice EventRecordingDevice { get; set; }
     }
 }

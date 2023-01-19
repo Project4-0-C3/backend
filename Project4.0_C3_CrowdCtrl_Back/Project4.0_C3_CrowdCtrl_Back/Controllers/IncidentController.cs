@@ -22,13 +22,13 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet]
         public async Task<IEnumerable<Incident>> GetIncidents()
         {
-            return await _context.Incidents.ToListAsync();
+            return await _context.Incidents.Include(i => i.MoodType).Include(i => i.IncidentType).Include(i => i.Feedbacks).Include(i => i.EventRecordingDevice).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetIncidentById(int id)
         {
-            var incident = await _context.Incidents.FindAsync(id);
+            var incident = await _context.Incidents.Include(i => i.MoodType).Include(i => i.IncidentType).Include(i => i.Feedbacks).Include(i => i.EventRecordingDevice).FirstOrDefaultAsync(i => i.IncidentId == id);
             return incident == null ? NotFound() : Ok(incident);
         }
 
