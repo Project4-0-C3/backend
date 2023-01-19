@@ -33,6 +33,10 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
                     b.Property<DateTime>("Date")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("EventTypeId")
                         .HasColumnType("int");
 
@@ -51,6 +55,38 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
                     b.ToTable("Event", (string)null);
                 });
 
+            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.EventRecordingDevice", b =>
+                {
+                    b.Property<int>("EventRecordingDeviceId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("EventRecordingDeviceId"), 1L, 1);
+
+                    b.Property<int>("EventId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PlacementName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RecordingDeviceId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ZoneId")
+                        .HasColumnType("int");
+
+                    b.HasKey("EventRecordingDeviceId");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("RecordingDeviceId");
+
+                    b.HasIndex("ZoneId");
+
+                    b.ToTable("EventRecordingDevice", (string)null);
+                });
+
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.EventType", b =>
                 {
                     b.Property<int>("EventTypeId")
@@ -63,8 +99,8 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Threshold")
-                        .HasColumnType("int");
+                    b.Property<double>("Threshold")
+                        .HasColumnType("float");
 
                     b.HasKey("EventTypeId");
 
@@ -125,27 +161,27 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
 
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.Group", b =>
                 {
-                    b.Property<int>("GroupID")
+                    b.Property<int>("GroupId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupID"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("GroupId"), 1L, 1);
 
-                    b.Property<int>("EventID")
+                    b.Property<int>("EventId")
                         .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ZoneID")
+                    b.Property<int>("ZoneId")
                         .HasColumnType("int");
 
-                    b.HasKey("GroupID");
+                    b.HasKey("GroupId");
 
-                    b.HasIndex("EventID");
+                    b.HasIndex("EventId");
 
-                    b.HasIndex("ZoneID");
+                    b.HasIndex("ZoneId");
 
                     b.ToTable("Group", (string)null);
                 });
@@ -181,33 +217,99 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IncidentId"), 1L, 1);
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<double>("Accuracy")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("EventId")
+                    b.Property<int>("EventRecordingDeviceId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Mood")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("IncidentTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("MoodTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("IncidentId");
+
+                    b.HasIndex("EventRecordingDeviceId");
+
+                    b.HasIndex("IncidentTypeId");
+
+                    b.HasIndex("MoodTypeId");
+
+                    b.ToTable("Incident", (string)null);
+                });
+
+            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.IncidentType", b =>
+                {
+                    b.Property<int>("IncidentTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("IncidentTypeId"), 1L, 1);
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RecordingDeviceId")
+                    b.HasKey("IncidentTypeId");
+
+                    b.ToTable("IncidentType", (string)null);
+                });
+
+            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.Mood", b =>
+                {
+                    b.Property<int>("MoodId")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("StartDate")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MoodId"), 1L, 1);
+
+                    b.Property<double>("Accuracy")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("EndTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("IncidentId");
+                    b.Property<int>("EventRecordingDeviceId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("EventId");
+                    b.Property<int>("MoodTypeId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("RecordingDeviceId");
+                    b.Property<DateTime>("StartTime")
+                        .HasColumnType("datetime2");
 
-                    b.ToTable("Incident", (string)null);
+                    b.HasKey("MoodId");
+
+                    b.HasIndex("EventRecordingDeviceId");
+
+                    b.HasIndex("MoodTypeId");
+
+                    b.ToTable("Mood", (string)null);
+                });
+
+            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.MoodType", b =>
+                {
+                    b.Property<int>("MoodTypeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("MoodTypeId"), 1L, 1);
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("MoodTypeId");
+
+                    b.ToTable("MoodType", (string)null);
                 });
 
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.RecordingDevice", b =>
@@ -222,12 +324,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ZoneId")
-                        .HasColumnType("int");
-
                     b.HasKey("RecordingDeviceId");
-
-                    b.HasIndex("ZoneId");
 
                     b.ToTable("RecordingDevice", (string)null);
                 });
@@ -248,8 +345,9 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("LastName")
-                        .HasColumnType("int");
+                    b.Property<string>("LastName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Role")
                         .IsRequired()
@@ -299,6 +397,33 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
                     b.Navigation("EventType");
                 });
 
+            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.EventRecordingDevice", b =>
+                {
+                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.Event", "Event")
+                        .WithMany("EventRecordingDevices")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.RecordingDevice", "RecordingDevice")
+                        .WithMany("EventRecordingDevices")
+                        .HasForeignKey("RecordingDeviceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.Zone", "Zone")
+                        .WithMany("EventRecordingDevices")
+                        .HasForeignKey("ZoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Event");
+
+                    b.Navigation("RecordingDevice");
+
+                    b.Navigation("Zone");
+                });
+
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.EventUser", b =>
                 {
                     b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.Event", "Event")
@@ -341,13 +466,13 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
                 {
                     b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.Event", "Event")
                         .WithMany("Groups")
-                        .HasForeignKey("EventID")
+                        .HasForeignKey("EventId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.Zone", "Zone")
                         .WithMany("Groups")
-                        .HasForeignKey("ZoneID")
+                        .HasForeignKey("ZoneId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -377,32 +502,48 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
 
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.Incident", b =>
                 {
-                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.Event", "Event")
-                        .WithMany("Incidents")
-                        .HasForeignKey("EventId")
+                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.RecordingDevice", "EventRecordingDevice")
+                        .WithMany()
+                        .HasForeignKey("EventRecordingDeviceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.RecordingDevice", "RecordingDevice")
+                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.IncidentType", "IncidentType")
                         .WithMany("Incidents")
-                        .HasForeignKey("RecordingDeviceId")
+                        .HasForeignKey("IncidentTypeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Event");
+                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.MoodType", "MoodType")
+                        .WithMany("Incidents")
+                        .HasForeignKey("MoodTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("RecordingDevice");
+                    b.Navigation("EventRecordingDevice");
+
+                    b.Navigation("IncidentType");
+
+                    b.Navigation("MoodType");
                 });
 
-            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.RecordingDevice", b =>
+            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.Mood", b =>
                 {
-                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.Zone", "Zone")
-                        .WithMany("Devices")
-                        .HasForeignKey("ZoneId")
+                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.EventRecordingDevice", "EventRecordingDevice")
+                        .WithMany()
+                        .HasForeignKey("EventRecordingDeviceId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Zone");
+                    b.HasOne("Project4._0_C3_CrowdCtrl_Back.Models.MoodType", "MoodType")
+                        .WithMany("Moods")
+                        .HasForeignKey("MoodTypeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("EventRecordingDevice");
+
+                    b.Navigation("MoodType");
                 });
 
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.Guard", b =>
@@ -416,11 +557,11 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
 
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.Event", b =>
                 {
+                    b.Navigation("EventRecordingDevices");
+
                     b.Navigation("EventUsers");
 
                     b.Navigation("Groups");
-
-                    b.Navigation("Incidents");
                 });
 
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.EventType", b =>
@@ -438,9 +579,21 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
                     b.Navigation("Feedbacks");
                 });
 
-            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.RecordingDevice", b =>
+            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.IncidentType", b =>
                 {
                     b.Navigation("Incidents");
+                });
+
+            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.MoodType", b =>
+                {
+                    b.Navigation("Incidents");
+
+                    b.Navigation("Moods");
+                });
+
+            modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.RecordingDevice", b =>
+                {
+                    b.Navigation("EventRecordingDevices");
                 });
 
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.User", b =>
@@ -450,7 +603,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data.Migrations
 
             modelBuilder.Entity("Project4._0_C3_CrowdCtrl_Back.Models.Zone", b =>
                 {
-                    b.Navigation("Devices");
+                    b.Navigation("EventRecordingDevices");
 
                     b.Navigation("Groups");
                 });

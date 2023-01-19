@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Xml.Linq;
+using Group = Project4._0_C3_CrowdCtrl_Back.Models.Group;
 
 namespace Project4._0_C3_CrowdCtrl_Back.Data
 {
@@ -24,10 +26,10 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data
 
                 //Add EventTypes
                 context.AddRange(
-                    new EventType { Name = "Gala", Threshold = 1 },
-                    new EventType { Name = "Football", Threshold = 3 },
-                    new EventType { Name = "Party", Threshold = 2 },
-                    new EventType { Name = "Proclamation", Threshold = 1 }
+                    new EventType { Name = "Gala", Threshold = 0.1 },
+                    new EventType { Name = "Football", Threshold = 0.8 },
+                    new EventType { Name = "Party", Threshold = 0.50 },
+                    new EventType { Name = "Proclamation", Threshold = 0.20 }
                     );
 
                 context.SaveChanges();
@@ -40,49 +42,12 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data
 
                 //Add Events
                 context.AddRange(
-                    new Event { Date = DateTime.Now, Name = "Thomas More Geel", Location = "Kleinhoefstraat 4, Geel", EventTypeId = 4 },
-                    new Event { Date = DateTime.Now, Name = "KVV Noordstar - KFC Oever", Location = "Tarwestraat 7-31, Herentals", EventTypeId = 2 },
-                    new Event { Date = DateTime.Now, Name = "EasterBunny Party", Location = "Konijnenber 13, Turnhout", EventTypeId = 3 },
-                    new Event { Date = DateTime.Now, Name = "Thomas More Lier", Location = "Antwerpsestraat 99, Lier", EventTypeId = 4 },
-                    new Event { Date = DateTime.Now, Name = "KRC Genk - KVC Westerlo", Location = "Stadionplein 4, Genk", EventTypeId = 2 },
-                    new Event { Date = DateTime.Now, Name = "Carnival", Location = "Rio de Janeiro, Brasil", EventTypeId = 2 }
-                    );
-
-                context.SaveChanges();
-
-                // Look for any Zones.
-                if (context.Zones.Any())
-                {
-                    return;   // DB has been seeded
-                }
-
-                //Add Zones
-                context.AddRange(
-                    new Zone { Name = "Alfa" },
-                    new Zone { Name = "Beta" },
-                    new Zone { Name = "Gamma" }
-                    );
-
-                context.SaveChanges();
-
-                // Look for any RecordingDevices.
-                if (context.RecordingDevices.Any())
-                {
-                    return;   // DB has been seeded
-                }
-
-                //Add RecordingDevices
-                context.AddRange(
-                    new RecordingDevice { Name = "RB32F7", ZoneId = 1 },
-                    new RecordingDevice { Name = "RB37G3", ZoneId = 2 },
-                    new RecordingDevice { Name = "R1FB32", ZoneId = 3 },
-                    new RecordingDevice { Name = "R9KCB4", ZoneId = 1 },
-                    new RecordingDevice { Name = "JV1221", ZoneId = 2 },
-                    new RecordingDevice { Name = "JD136G", ZoneId = 3 },
-                    new RecordingDevice { Name = "TV3FD1", ZoneId = 1 },
-                    new RecordingDevice { Name = "5RHRR3", ZoneId = 2 },
-                    new RecordingDevice { Name = "LVG125", ZoneId = 3 },
-                    new RecordingDevice { Name = "KO2N0W", ZoneId = 1 }
+                    new Event { Date = DateTime.Now, Name = "Thomas More Geel", Location = "Kleinhoefstraat 4, Geel", Description = "This would be a description for an event", EventTypeId = 4 },
+                    new Event { Date = DateTime.Now, Name = "KVV Noordstar - KFC Oever", Location = "Tarwestraat 7-31, Herentals", Description = "This would be a description for an event", EventTypeId = 2 },
+                    new Event { Date = DateTime.Now, Name = "EasterBunny Party", Location = "Konijnenber 13, Turnhout", Description = "This would be a description for an event", EventTypeId = 3 },
+                    new Event { Date = DateTime.Now, Name = "Thomas More Lier", Location = "Antwerpsestraat 99, Lier", Description = "This would be a description for an event", EventTypeId = 4 },
+                    new Event { Date = DateTime.Now, Name = "KRC Genk - KVC Westerlo", Location = "Stadionplein 4, Genk", Description = "This would be a description for an event", EventTypeId = 2 },
+                    new Event { Date = DateTime.Now, Name = "Carnival", Location = "Rio de Janeiro, Brasil", Description = "This would be a description for an event", EventTypeId = 2 }
                     );
 
                 context.SaveChanges();
@@ -123,6 +88,23 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data
 
                 context.SaveChanges();
 
+                // Look for any Zones.
+                if (context.Zones.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                //Add Zones
+                context.AddRange(
+                    new Zone { Name = "Alfa" },
+                    new Zone { Name = "Beta" },
+                    new Zone { Name = "Gamma" }
+                    );
+
+                context.SaveChanges();
+
+               
+
                 // Look for any EventUsers.
                 if (context.EventUsers.Any())
                 {
@@ -142,6 +124,166 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data
                     new EventUser { EventId = 2, UserId = 10 },
                     new EventUser { EventId = 2, UserId = 11 },
                     new EventUser { EventId = 2, UserId = 12 }
+                    );
+
+                context.SaveChanges();
+
+                // Look for any RecordingDevices.
+                if (context.RecordingDevices.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                //Add RecordingDevices
+                context.AddRange(
+                    new RecordingDevice { Name = "RB32F7" },
+                    new RecordingDevice { Name = "RB37G3" },
+                    new RecordingDevice { Name = "R1FB32" },
+                    new RecordingDevice { Name = "R9KCB4" },
+                    new RecordingDevice { Name = "JV1221" },
+                    new RecordingDevice { Name = "JD136G" },
+                    new RecordingDevice { Name = "TV3FD1" },
+                    new RecordingDevice { Name = "5RHRR3" },
+                    new RecordingDevice { Name = "LVG125" },
+                    new RecordingDevice { Name = "KO2N0W" }
+                    );
+
+                context.SaveChanges();
+
+                // Look for any EventRecordingDevices.
+                if (context.EventRecordingDevices.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                //Add EventRecordingDevices
+                context.AddRange(
+                    new EventRecordingDevice { PlacementName = "Bathroom Men", ZoneId = 1, RecordingDeviceId = 1, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Bathroom Women", ZoneId = 1, RecordingDeviceId = 2, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Entrance", ZoneId = 1, RecordingDeviceId = 3, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Ticket Sale", ZoneId = 2, RecordingDeviceId = 4, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Lounge", ZoneId = 2, RecordingDeviceId = 5, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Exit 1", ZoneId = 2, RecordingDeviceId = 6, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Exit 2", ZoneId = 3, RecordingDeviceId = 7, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Exit 3", ZoneId = 3, RecordingDeviceId = 8, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Buffet", ZoneId = 3, RecordingDeviceId = 9, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Bar", ZoneId = 3, RecordingDeviceId = 10, EventId = 1 },
+                    new EventRecordingDevice { PlacementName = "Entrance", ZoneId = 1, RecordingDeviceId = 1, EventId = 2 }
+                    );
+
+                context.SaveChanges();
+
+                // Look for any MoodTypes.
+                if (context.MoodTypes.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                //Add MoodTypes
+                context.AddRange(
+                    new MoodType { Name = "Negative" },
+                    new MoodType { Name = "Neutral" },
+                    new MoodType { Name = "Positive" }
+
+                    );
+
+                context.SaveChanges();
+
+                // Look for any Moods.
+                if (context.Moods.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                //Add Moods
+                context.AddRange(
+                    new Mood { Accuracy = 0.98, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 1, EventRecordingDeviceId = 1 },
+                    new Mood { Accuracy = 0.76, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 1, EventRecordingDeviceId = 2 },
+                    new Mood { Accuracy = 0.90, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 1, EventRecordingDeviceId = 3 },
+                    new Mood { Accuracy = 0.88, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 2, EventRecordingDeviceId = 4 },
+                    new Mood { Accuracy = 0.99, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 2, EventRecordingDeviceId = 5 },
+                    new Mood { Accuracy = 0.79, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 2, EventRecordingDeviceId = 6 },
+                    new Mood { Accuracy = 0.98, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 3, EventRecordingDeviceId = 7 },
+                    new Mood { Accuracy = 0.98, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 3, EventRecordingDeviceId = 8 },
+                    new Mood { Accuracy = 0.95, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 3, EventRecordingDeviceId = 1 },
+                    new Mood { Accuracy = 0.92, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 2, EventRecordingDeviceId = 11 }
+
+                    );
+
+                context.SaveChanges();
+
+                // Look for any IncidentTypes.
+                if (context.IncidentTypes.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                //Add IncidentTypes
+                context.AddRange(
+                    new IncidentType { Name = "Applause" },
+                    new IncidentType { Name = "Thunder" },
+                    new IncidentType { Name = "Panic" },
+                    new IncidentType { Name = "Sirene" },
+                    new IncidentType { Name = "Fireworks" }
+
+                    );
+
+                context.SaveChanges();
+
+                // Look for any Incidents.
+                if (context.Incidents.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                //Add Incidents
+                context.AddRange(
+                    new Incident { IncidentTypeId = 1, Accuracy = 0.98, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 1, EventRecordingDeviceId = 1 },
+                    new Incident { IncidentTypeId = 1, Accuracy = 0.76, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 1, EventRecordingDeviceId = 1 },
+                    new Incident { IncidentTypeId = 1, Accuracy = 0.90, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 2, EventRecordingDeviceId = 1 },
+                    new Incident { IncidentTypeId = 2, Accuracy = 0.88, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 1, EventRecordingDeviceId = 2 },
+                    new Incident { IncidentTypeId = 2, Accuracy = 0.99, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 2, EventRecordingDeviceId = 2 },
+                    new Incident { IncidentTypeId = 2, Accuracy = 0.79, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 3, EventRecordingDeviceId = 2 },
+                    new Incident { IncidentTypeId = 3, Accuracy = 0.98, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 2, EventRecordingDeviceId = 3 },
+                    new Incident { IncidentTypeId = 3, Accuracy = 0.98, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 1, EventRecordingDeviceId = 3 },
+                    new Incident { IncidentTypeId = 3, Accuracy = 0.95, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 1, EventRecordingDeviceId = 3 },
+                    new Incident { IncidentTypeId = 4, Accuracy = 0.92, StartTime = DateTime.Now, EndTime = DateTime.Now, MoodTypeId = 2, EventRecordingDeviceId = 1 }
+
+                    );
+
+                context.SaveChanges();
+
+                // Look for any Groups.
+                if (context.Groups.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                //Add Groups
+                context.AddRange(
+                    new Group { Name = "Group 1", ZoneId = 1, EventId = 1 },
+                    new Group { Name = "Group 2", ZoneId = 2, EventId = 1 },
+                    new Group { Name = "Group 3", ZoneId = 3, EventId = 1 },
+                    new Group { Name = "Group 1", ZoneId = 1, EventId = 2 },
+                    new Group { Name = "Group 2", ZoneId = 2, EventId = 2 }
+                    );
+
+                context.SaveChanges();
+
+                // Look for any GroupGuards.
+                if (context.GroupGuards.Any())
+                {
+                    return;   // DB has been seeded
+                }
+
+                //Add GroupGuards
+                context.AddRange(
+                    new GroupGuard { GuardId = 7, GroupId = 1 },
+                    new GroupGuard { GuardId = 8, GroupId = 1 },
+                    new GroupGuard { GuardId = 9, GroupId = 2 },
+                    new GroupGuard { GuardId = 10, GroupId = 2 },
+                    new GroupGuard { GuardId = 11, GroupId = 3 },
+                    new GroupGuard { GuardId = 12, GroupId = 4 }
                     );
 
                 context.SaveChanges();
