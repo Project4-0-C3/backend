@@ -22,13 +22,13 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet]
         public async Task<IEnumerable<EventUser>> GetEventUsers()
         {
-            return await _context.EventUsers.ToListAsync();
+            return await _context.EventUsers.Include(e => e.User).Include(e => e.Event).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEventUserById(int id)
         {
-            var eventUser = await _context.EventUsers.FindAsync(id);
+            var eventUser = await _context.EventUsers.Include(e => e.User).Include(e => e.Event).FirstOrDefaultAsync(i => i.EventUserId == id);
             return eventUser == null ? NotFound() : Ok(eventUser);
         }
 
