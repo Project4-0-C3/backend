@@ -22,7 +22,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet]
         public async Task<IEnumerable<Event>> GetEvents()
         {
-            return await _context.Events.Include(e => e.EventType).Include(e => e.EventUsers).Include(e => e.EventRecordingDevices).Include(e => e.Groups).ToListAsync();
+            return await _context.Events.Include(e => e.EventType).Include(e => e.EventRecordingDevices).ThenInclude(device => device.RecordingDevice).Include(e => e.Groups).ThenInclude(group => group.Zone).Include(e => e.EventUsers).ThenInclude(eventUser => eventUser.User).ToListAsync();
         }
 
         [HttpGet("{id}")]

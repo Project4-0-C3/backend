@@ -1,4 +1,6 @@
-﻿namespace Project4._0_C3_CrowdCtrl_Back.Models
+﻿using System.Text.Json.Serialization;
+
+namespace Project4._0_C3_CrowdCtrl_Back.Models
 {
     public class Group
     {
@@ -7,6 +9,7 @@
         public int ZoneId { get; set; }
         public int EventId { get; set; }
         public Zone? Zone { get; set; }
+        [JsonIgnore]
         public Event? Event { get; set; }
         public List<GroupGuard>? GroupGuards { get; set; } = new List<GroupGuard>();
     }
