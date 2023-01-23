@@ -28,7 +28,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetGroupById(int id)
         {
-            var group = await _context.Groups.Include(g => g.Zone).Include(g => g.Event).Include(g => g.GroupGuards).FirstOrDefaultAsync(g => g.GroupId == id);
+            var group = await _context.Groups.Include(g => g.Zone).ThenInclude(z => z.EventRecordingDevices).Include(g => g.Event).Include(g => g.GroupGuards).ThenInclude(gg => gg.Guard).FirstOrDefaultAsync(g => g.GroupId == id);
             return group == null ? NotFound() : Ok(group);
         }
 
