@@ -22,6 +22,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet]
         public async Task<IEnumerable<User>> GetUsers(string? role)
         {
+
             if (role != null) {
                 return await _context.Users.Where(u => u.Role == role).ToListAsync();
             } else { 
@@ -32,7 +33,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
-            var user = await _context.Users.Include(u => u.EventUsers).FirstOrDefaultAsync(u => u.UserId == id);
+            var user = await _context.Users.Include(u => u.EventUsers).Include(u => u.GroupGuards).FirstOrDefaultAsync(u => u.UserId == id);
             return user == null ? NotFound() : Ok(user);
         }
 

@@ -22,13 +22,13 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet]
         public async Task<IEnumerable<Feedback>> GetFeedbacks()
         {
-            return await _context.Feedbacks.Include(f => f.Guard).Include(f => f.Incident).ToListAsync();
+            return await _context.Feedbacks.Include(f => f.User).Include(f => f.Incident).ToListAsync();
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetFeedbackById(int id)
         {
-            var feedback = await _context.Feedbacks.Include(f => f.Guard).Include(f => f.Incident).FirstOrDefaultAsync(f => f.FeedbackId == id);
+            var feedback = await _context.Feedbacks.Include(f => f.User).Include(f => f.Incident).FirstOrDefaultAsync(f => f.FeedbackId == id);
             return feedback == null ? NotFound() : Ok(feedback);
         }
 
