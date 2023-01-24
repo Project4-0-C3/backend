@@ -9,6 +9,8 @@ namespace Project4._0_C3_CrowdCtrl_Back.Models
         public string LastName { get; set; }
         public string Email { get; set; }
         public string Role { get; set; }
+        public string? PhoneNumber { get; set; }
+        public List<GroupGuard> GroupGuards { get; set; } = new List<GroupGuard>();
 
         public List<EventUser> EventUsers { get; set; } = new List<EventUser>();
     }

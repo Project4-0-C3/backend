@@ -17,7 +17,6 @@ namespace Project4._0_C3_CrowdCtrl_Back.Models
         public DbSet<Feedback> Feedbacks { get; set; }
         public DbSet<Group> Groups { get; set; }
         public DbSet<GroupGuard> GroupGuards { get; set; }
-        public DbSet<Guard> Guards { get; set; }
         public DbSet<Incident> Incidents { get; set; }
         public DbSet<Mood> Moods { get; set; }
         public DbSet<MoodType> MoodTypes { get; set; }
@@ -35,7 +34,6 @@ namespace Project4._0_C3_CrowdCtrl_Back.Models
             modelBuilder.Entity<Feedback>().ToTable("Feedback");
             modelBuilder.Entity<Group>().ToTable("Group");
             modelBuilder.Entity<GroupGuard>().ToTable("GroupGuard");
-            modelBuilder.Entity<Guard>().ToTable("Guard");
             modelBuilder.Entity<Incident>().ToTable("Incident");
             modelBuilder.Entity<Mood>().ToTable("Mood");
             modelBuilder.Entity<MoodType>().ToTable("MoodType");
