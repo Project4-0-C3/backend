@@ -19,10 +19,24 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
             _context = context;
         }
 
+        //[HttpGet]
+        //public async Task<IEnumerable<EventUser>> GetEventUsers()
+        //{
+        //    return await _context.EventUsers.Include(e => e.User).Include(e => e.Event).ToListAsync();
+        //}
+
         [HttpGet]
-        public async Task<IEnumerable<EventUser>> GetEventUsers()
+        public async Task<IEnumerable<EventUser>> GetEventUsers(int? @event, string? role)
         {
-            return await _context.EventUsers.Include(e => e.User).Include(e => e.Event).ToListAsync();
+            if (@event != null && role != null)
+            {
+                return await _context.EventUsers.Include(e => e.User).Where(e => e.EventId == @event).Where(e => e.User.Role == role).ToListAsync();
+            }
+            else
+            {
+                return await _context.EventUsers.Include(e => e.User).Include(e => e.Event).ToListAsync();
+
+            }
         }
 
         [HttpGet("{id}")]
