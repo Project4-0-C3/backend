@@ -26,14 +26,14 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
             if (role != null) {
                 return await _context.Users.Where(u => u.RoleTypeId == role).ToListAsync();
             } else { 
-                return await _context.Users.ToListAsync();
+                return await _context.Users.Include(u => u.RoleType).ToListAsync();
             }
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
-            var user = await _context.Users.Include(u => u.EventUsers).Include(u => u.GroupGuards).FirstOrDefaultAsync(u => u.UserId == id);
+            var user = await _context.Users.Include(u => u.EventUsers).Include(u => u.GroupGuards).Include(u => u.RoleType).FirstOrDefaultAsync(u => u.UserId == id);
             return user == null ? NotFound() : Ok(user);
         }
 
