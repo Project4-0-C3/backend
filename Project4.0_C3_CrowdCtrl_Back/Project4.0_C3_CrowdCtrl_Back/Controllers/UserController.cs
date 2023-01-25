@@ -20,11 +20,11 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<User>> GetUsers(string? role)
+        public async Task<IEnumerable<User>> GetUsers(int? role)
         {
 
             if (role != null) {
-                return await _context.Users.Where(u => u.Role == role).ToListAsync();
+                return await _context.Users.Where(u => u.RoleTypeId == role).ToListAsync();
             } else { 
                 return await _context.Users.ToListAsync();
             }

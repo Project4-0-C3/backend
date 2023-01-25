@@ -52,26 +52,26 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data
 
                 //context.SaveChanges();
 
-                // Look for any Users.
+                //Look for any Users.
                 //if (context.Users.Any())
-                //{
-                //    return;   // DB has been seeded
-                //}
+                //    {
+                //        return;   // DB has been seeded
+                //    }
 
                 ////Add Users
                 //context.AddRange(
-                //    new User { FirstName = "Jari", LastName = "Van de Vel", Email = "vandeveljari@outlook.com", Role = "Admin" },
-                //    new User { FirstName = "Renzo", LastName = "Beeckmans", Email = "rebe11@gmail.com", Role = "TeamLead" },
-                //    new User { FirstName = "Robin", LastName = "Ram", Email = "robin@ram.com", Role = "TeamLead" },
-                //    new User { FirstName = "John", LastName = "Banko", Email = "johnbanko@gmail.com", Role = "Teamlead" },
-                //    new User { FirstName = "Bert", LastName = "Janssens", Email = "bertjanssens@gmail.com", Role = "Teamlead" },
-                //    new User { FirstName = "Jan", LastName = "Peeters", Email = "peetersj@gmail.com", Role = "Teamlead" },
-                //    new User { FirstName = "Jonas", LastName = "Van den Berg", Email = "jonasvandenberg@outlook.com", Role = "Guard", PhoneNumber = "0472893644" },
-                //    new User { FirstName = "Victor", LastName = "Verhavert", Email = "victorverhavert@gmail.com", Role = "Guard", PhoneNumber = "0473593644" },
-                //    new User { FirstName = "Arne", LastName = "Vanhove", Email = "vanhovearne@gmail.com", Role = "Guard", PhoneNumber = "0491193644" },
-                //    new User { FirstName = "Jesse", LastName = "Dierckx", Email = "jessedierckx@gmail.com", Role = "Guard", PhoneNumber = "0221893644" },
-                //    new User { FirstName = "Tim", LastName = "Verbecque", Email = "verbecquet@gmail.com", Role = "Guard", PhoneNumber = "0472921644" },
-                //    new User { FirstName = "Lenn", LastName = "Van Genechten", Email = "lennvangenechten@gmail.com", Role = "Guard", PhoneNumber = "0472619644" }
+                //    //new User { FirstName = "Jari", LastName = "Van de Vel", Email = "vandeveljari@outlook.com", RoleTypeId = 1 },
+                //    new User { FirstName = "Renzo", LastName = "Beeckmans", Email = "rebe11@gmail.com", RoleTypeId = 2 },
+                //    new User { FirstName = "Robin", LastName = "Ram", Email = "robin@ram.com", RoleTypeId = 2 },
+                //    new User { FirstName = "John", LastName = "Banko", Email = "johnbanko@gmail.com", RoleTypeId = 2 },
+                //    new User { FirstName = "Bert", LastName = "Janssens", Email = "bertjanssens@gmail.com", RoleTypeId = 2 },
+                //    new User { FirstName = "Jan", LastName = "Peeters", Email = "peetersj@gmail.com", RoleTypeId = 2 },
+                //    new User { FirstName = "Jonas", LastName = "Van den Berg", Email = "jonasvandenberg@outlook.com", RoleTypeId = 3, PhoneNumber = "0472893644" },
+                //    new User { FirstName = "Victor", LastName = "Verhavert", Email = "victorverhavert@gmail.com", RoleTypeId = 3, PhoneNumber = "0473593644" },
+                //    new User { FirstName = "Arne", LastName = "Vanhove", Email = "vanhovearne@gmail.com", RoleTypeId = 3, PhoneNumber = "0491193644" },
+                //    new User { FirstName = "Jesse", LastName = "Dierckx", Email = "jessedierckx@gmail.com", RoleTypeId = 3, PhoneNumber = "0221893644" },
+                //    new User { FirstName = "Tim", LastName = "Verbecque", Email = "verbecquet@gmail.com", RoleTypeId = 3, PhoneNumber = "0472921644" },
+                //    new User { FirstName = "Lenn", LastName = "Van Genechten", Email = "lennvangenechten@gmail.com", RoleTypeId = 3, PhoneNumber = "0472619644" }
                 //    );
 
                 //context.SaveChanges();
@@ -86,12 +86,12 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data
 
                 ////Add Guards
                 //context.AddRange(
-                //    new Guard { FirstName = "Jonas", LastName = "Van den Berg", Email = "jonasvandenberg@outlook.com", Role = "Guard", PhoneNumber = "0472893644" },
-                //    new Guard { FirstName = "Victor", LastName = "Verhavert", Email = "victorverhavert@gmail.com", Role = "Guard", PhoneNumber = "0473593644" },
-                //    new Guard { FirstName = "Arne", LastName = "Vanhove", Email = "vanhovearne@gmail.com", Role = "Guard", PhoneNumber = "0491193644" },
-                //    new Guard { FirstName = "Jesse", LastName = "Dierckx", Email = "jessedierckx@gmail.com", Role = "Guard", PhoneNumber = "0221893644" },
-                //    new Guard { FirstName = "Tim", LastName = "Verbecque", Email = "verbecquet@gmail.com", Role = "Guard", PhoneNumber = "0472921644" },
-                //    new Guard { FirstName = "Lenn", LastName = "Van Genechten", Email = "lennvangenechten@gmail.com", Role = "Guard", PhoneNumber = "0472619644" }
+                //    new Guard { FirstName = "Jonas", LastName = "Van den Berg", Email = "jonasvandenberg@outlook.com", UserTypeId = 1, PhoneNumber = "0472893644" },
+                //    new Guard { FirstName = "Victor", LastName = "Verhavert", Email = "victorverhavert@gmail.com", UserTypeId = 1, PhoneNumber = "0473593644" },
+                //    new Guard { FirstName = "Arne", LastName = "Vanhove", Email = "vanhovearne@gmail.com", UserTypeId = 1, PhoneNumber = "0491193644" },
+                //    new Guard { FirstName = "Jesse", LastName = "Dierckx", Email = "jessedierckx@gmail.com", UserTypeId = 1, PhoneNumber = "0221893644" },
+                //    new Guard { FirstName = "Tim", LastName = "Verbecque", Email = "verbecquet@gmail.com", UserTypeId = 1, PhoneNumber = "0472921644" },
+                //    new Guard { FirstName = "Lenn", LastName = "Van Genechten", Email = "lennvangenechten@gmail.com", UserTypeId = 1, PhoneNumber = "0472619644" }
                 //    );
 
                 //context.SaveChanges();
@@ -293,6 +293,21 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data
                 //    new GroupGuard { UserId = 52, GroupId = 2 },
                 //    new GroupGuard { UserId = 53, GroupId = 3 },
                 //    new GroupGuard { UserId = 52, GroupId = 4 }
+                //    );
+
+                //context.SaveChanges();
+
+                //// Look for any UserTypes.
+                //if (context.RoleTypes.Any())
+                //{
+                //    return;   // DB has been seeded
+                //}
+
+                ////Add UserTypes
+                //context.AddRange(
+                //    new RoleType { Name = "Admin" },
+                //    new RoleType { Name = "Teamlead" },
+                //    new RoleType { Name = "Guard" }
                 //    );
 
                 //context.SaveChanges();

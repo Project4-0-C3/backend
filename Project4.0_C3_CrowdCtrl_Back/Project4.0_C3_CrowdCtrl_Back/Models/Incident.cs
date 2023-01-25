@@ -10,7 +10,7 @@
         public int MoodTypeId { get; set; }
         public int IncidentTypeId { get; set; }
         public IncidentType IncidentType { get; set; }
-        public List<Feedback> Feedbacks { get; set; } = new List<Feedback>();
+        public List<Feedback>? Feedbacks { get; set; } = new List<Feedback>();
         public RecordingDevice EventRecordingDevice { get; set; }
         public MoodType MoodType { get; set; }
     }
