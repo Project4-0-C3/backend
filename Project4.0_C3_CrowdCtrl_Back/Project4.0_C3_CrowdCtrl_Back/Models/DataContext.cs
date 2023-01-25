@@ -22,6 +22,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Models
         public DbSet<MoodType> MoodTypes { get; set; }
         public DbSet<RecordingDevice> RecordingDevices { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<RoleType> RoleTypes { get; set; }
         public DbSet<Zone> Zones { get; set; }
         public DbSet<IncidentType> IncidentTypes { get; set; }
 
@@ -39,6 +40,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Models
             modelBuilder.Entity<MoodType>().ToTable("MoodType");
             modelBuilder.Entity<RecordingDevice>().ToTable("RecordingDevice");
             modelBuilder.Entity<User>().ToTable("User");
+            modelBuilder.Entity<RoleType>().ToTable("RoleType");
             modelBuilder.Entity<Zone>().ToTable("Zone");
             modelBuilder.Entity<IncidentType>().ToTable("IncidentType");
         }

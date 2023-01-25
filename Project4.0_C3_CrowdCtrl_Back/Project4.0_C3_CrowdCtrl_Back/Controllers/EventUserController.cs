@@ -26,11 +26,11 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         //}
 
         [HttpGet]
-        public async Task<IEnumerable<EventUser>> GetEventUsers(int? @event, string? role)
+        public async Task<IEnumerable<EventUser>> GetEventUsers(int? @event, int? role)
         {
             if (@event != null && role != null)
             {
-                return await _context.EventUsers.Include(e => e.User).Where(e => e.EventId == @event).Where(e => e.User.Role == role).ToListAsync();
+                return await _context.EventUsers.Include(e => e.User).Where(e => e.EventId == @event).Where(e => e.User.RoleTypeId == role).ToListAsync();
             }
             else
             {
