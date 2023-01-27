@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Project4._0_C3_CrowdCtrl_Back.DAL;
 using Project4._0_C3_CrowdCtrl_Back.Models;
 using Project4._0_C3_CrowdCtrl_Back.Repositories;
+using System.Data;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace Project4._0_C3_CrowdCtrl_Back.Controllers
@@ -20,9 +22,17 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<EventRecordingDevice>> GetEventRecordingDevices()
+        public async Task<IEnumerable<EventRecordingDevice>> GetEventRecordingDevices(int? @event)
         {
-            return await _context.EventRecordingDevices.Include(e => e.Zone).Include(e => e.Event).Include(e => e.RecordingDevice).ToListAsync();
+            if (@event != null)
+            {
+                return await _context.EventRecordingDevices.Include(e => e.RecordingDevice).Where(e => e.EventId == @event).ToListAsync();
+            }
+            else
+            {
+                return await _context.EventRecordingDevices.Include(e => e.Zone).Include(e => e.Event).Include(e => e.RecordingDevice).ToListAsync();
+
+            }
         }
 
         [HttpGet("{id}")]
@@ -52,9 +62,14 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteEventRecordingDevice(int id)
+        public async Task<ActionResult> DeleteEventRecordingDevice(int id, int? eventId)
         {
             var eventRecordingDeviceToDelete = await _context.EventRecordingDevices.FindAsync(id);
+            if (eventId != null)
+            {
+                eventRecordingDeviceToDelete = await _context.EventRecordingDevices.Where(e => e.EventId == eventId).FirstAsync(e => e.RecordingDeviceId == id);
+            }
+
             if (eventRecordingDeviceToDelete == null) return NotFound();
 
             _context.EventRecordingDevices.Remove(eventRecordingDeviceToDelete);

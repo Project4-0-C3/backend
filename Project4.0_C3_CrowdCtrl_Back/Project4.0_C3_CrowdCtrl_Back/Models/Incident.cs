@@ -11,7 +11,9 @@
         public int IncidentTypeId { get; set; }
         public IncidentType IncidentType { get; set; }
         public List<Feedback>? Feedbacks { get; set; } = new List<Feedback>();
-        public RecordingDevice EventRecordingDevice { get; set; }
+        public EventRecordingDevice EventRecordingDevice { get; set; }
+        //public List<EventRecordingDevice> EventRecordingDevices { get; set; } = new List<EventRecordingDevice>();
+
         public MoodType MoodType { get; set; }
     }
 }

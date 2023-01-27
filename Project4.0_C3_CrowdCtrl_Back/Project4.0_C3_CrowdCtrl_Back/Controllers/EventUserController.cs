@@ -66,9 +66,12 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult> DeleteEventUser(int id)
+        public async Task<ActionResult> DeleteEventUser(int id, int? eventId)
         {
             var eventUserToDelete = await _context.EventUsers.FindAsync(id);
+            if (eventId != null) { 
+                eventUserToDelete = await _context.EventUsers.Where(e => e.EventId == eventId).FirstAsync(e => e.UserId == id); 
+            }
             if (eventUserToDelete == null) return NotFound();
 
             _context.EventUsers.Remove(eventUserToDelete);
