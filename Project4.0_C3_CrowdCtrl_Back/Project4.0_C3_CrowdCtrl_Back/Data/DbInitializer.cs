@@ -114,28 +114,28 @@ namespace Project4._0_C3_CrowdCtrl_Back.Data
 
 
 
-                // Look for any EventUsers.
-                if (context.EventUsers.Any())
-                {
-                    return;   // DB has been seeded
-                }
+                //Look for any EventUsers.
+                //if (context.EventUsers.Any())
+                //    {
+                //        return;   // DB has been seeded
+                //    }
 
                 //Add EventUsers
-                context.AddRange(
-                    new EventUser { EventId = 1, UserId = 2 },
-                    new EventUser { EventId = 1, UserId = 3 },
-                    new EventUser { EventId = 1, UserId = 4 },
-                    new EventUser { EventId = 1, UserId = 5 },
-                    new EventUser { EventId = 1, UserId = 6 },
-                    new EventUser { EventId = 1, UserId = 7 },
-                    new EventUser { EventId = 2, UserId = 8 },
-                    new EventUser { EventId = 2, UserId = 9 },
-                    new EventUser { EventId = 2, UserId = 10 },
-                    new EventUser { EventId = 2, UserId = 11 },
-                    new EventUser { EventId = 2, UserId = 2 }
-                    );
+                //context.AddRange(
+                //    new EventUser { EventId = 1, UserId = 2 },
+                //    new EventUser { EventId = 1, UserId = 3 },
+                //    new EventUser { EventId = 1, UserId = 4 },
+                //    new EventUser { EventId = 1, UserId = 5 },
+                //    new EventUser { EventId = 1, UserId = 6 },
+                //    new EventUser { EventId = 1, UserId = 7 },
+                //    new EventUser { EventId = 2, UserId = 8 },
+                //    new EventUser { EventId = 2, UserId = 9 },
+                //    new EventUser { EventId = 2, UserId = 10 },
+                //    new EventUser { EventId = 2, UserId = 11 },
+                //    new EventUser { EventId = 2, UserId = 2 }
+                //    );
 
-                context.SaveChanges();
+                //context.SaveChanges();
 
                 //// Look for any RecordingDevices.
                 //if (context.RecordingDevices.Any())
