@@ -20,9 +20,14 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<Incident>> GetIncidents()
+        public async Task<IEnumerable<Incident>> GetIncidents(int? @event)
         {
-            return await _context.Incidents.Include(i => i.MoodType).Include(i => i.IncidentType).Include(i => i.Feedbacks).Include(i => i.EventRecordingDevice).ToListAsync();
+            if (@event != null) {
+                return await _context.Incidents.Include(i => i.EventRecordingDevice).Where(i => i.EventRecordingDevice.EventId == @event).ToListAsync();
+            }
+            else {
+                return await _context.Incidents.Include(i => i.MoodType).Include(i => i.IncidentType).Include(i => i.Feedbacks).Include(i => i.EventRecordingDevice).ToListAsync();
+            }
         }
 
         [HttpGet("{id}")]
