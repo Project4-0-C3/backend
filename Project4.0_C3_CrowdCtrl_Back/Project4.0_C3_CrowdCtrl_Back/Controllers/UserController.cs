@@ -30,6 +30,14 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
             }
         }
 
+        [HttpGet("{email},{password}")]
+
+        public async Task<IActionResult> GetUserLogin(string email, string password)
+        {
+            var user = await _context.Users.Include(u => u.RoleType).FirstOrDefaultAsync(u => u.Email == email && u.Password == password);
+            return user == null ? NotFound() : Ok(user); ;
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetUserById(int id)
         {
