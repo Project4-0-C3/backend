@@ -7,9 +7,9 @@ namespace Project4._0_C3_CrowdCtrl_Back.Models
         public int GroupGuardId { get; set; }
         public int GroupId { get; set; }
         public int UserId { get; set; }
-        
-        public Group Group { get; set; }
-        
-        public User User { get; set; }
+        [JsonIgnore]
+        public Group? Group { get; set; }
+        [JsonIgnore]
+        public User? User { get; set; }
     }
 }
