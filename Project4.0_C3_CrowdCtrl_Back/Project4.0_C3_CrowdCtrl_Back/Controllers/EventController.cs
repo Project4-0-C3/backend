@@ -28,7 +28,7 @@ namespace Project4._0_C3_CrowdCtrl_Back.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetEventById(int id)
         {
-            var @event = await _context.Events.Include(e => e.EventType).Include(e => e.EventRecordingDevices).ThenInclude(device => device.RecordingDevice).Include(e => e.Groups).ThenInclude(group => group.Zone ).Include(e => e.Groups).ThenInclude(group => group.GroupGuards).Include(e => e.EventUsers).ThenInclude(eventUser => eventUser.User).FirstOrDefaultAsync(i => i.EventId == id);
+            var @event = await _context.Events.Include(e => e.EventType).Include(e => e.EventRecordingDevices).ThenInclude(device => device.RecordingDevice).Include(e => e.Groups).ThenInclude(group => group.Zone ).Include(e => e.Groups).Include(e => e.EventUsers).ThenInclude(eventUser => eventUser.User).FirstOrDefaultAsync(i => i.EventId == id);
             return @event == null ? NotFound(): Ok(@event);
         }
 

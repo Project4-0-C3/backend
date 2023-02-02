@@ -19,8 +19,6 @@ namespace Project4._0_C3_CrowdCtrl_Back.DAL
         IGenericRepository<EventUser> EventUserRepository { get; }
         IGenericRepository<Feedback> FeedbackRepository { get; }
         IGenericRepository<Models.Group> GroupRepository { get; }
-        IGenericRepository<GroupGuard> GroupGuardRepository { get; }
-        IGenericRepository<Guard> GuardRepository { get; }
         IGenericRepository<Incident> IncidentRepository { get; }
         IGenericRepository<RecordingDevice> RecordingDeviceRepository { get; }
         IGenericRepository<User> UserRepository { get; }

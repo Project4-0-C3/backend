@@ -88,34 +88,6 @@ namespace Project4._0_C3_CrowdCtrl_Back.DAL
             }
         }
 
-        private IGenericRepository<GroupGuard> groupGuardRepository;
-        public IGenericRepository<GroupGuard> GroupGuardRepository
-        {
-            get
-            {
-                if (groupGuardRepository == null)
-                {
-                    groupGuardRepository = new GroupGuardRepository(_context);
-                }
-
-                return groupGuardRepository;
-            }
-        }
-
-        private IGenericRepository<Guard> guardRepository;
-        public IGenericRepository<Guard> GuardRepository
-        {
-            get
-            {
-                if (guardRepository == null)
-                {
-                    guardRepository = new GuardRepository(_context);
-                }
-
-                return guardRepository;
-            }
-        }
-
         private IGenericRepository<Incident> incidentRepository;
         public IGenericRepository<Incident> IncidentRepository
         {
